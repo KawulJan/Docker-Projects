@@ -1,0 +1,15 @@
+services:
+pythonapp:
+  build: ./python/
+  command: sh -c "seleep 10s ; python3 ./hello_uyghur.py"
+  depends_on:
+    - mysql
+
+mysql:
+  build: ./mysql/
+  restart: always
+  environment:
+    MYSQL_DATABASE: 'db'
+    MYSQL_ROOT_PASSWORD: 'root'
+  ports:
+   - '3306:3306'
